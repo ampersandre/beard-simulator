@@ -1,0 +1,105 @@
+body { font-family: Arial; }
+#beard-simulator {
+    width: 460px;
+}
+.bs-buttons {
+    background-color: #333;
+}
+.bs-button {
+    height: 32px;
+    line-height: 32px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #FFF;
+    border: none;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #333;
+    border-left: 1px solid #444;
+    border-right: 1px solid #222;
+    text-align: center;
+    padding: 0 10px;
+    margin: 0;
+    opacity: 0.96;
+}
+.bs-button:hover {
+    opacity: 1;
+}
+.bs-button:disabled {
+	opacity: 0.5;
+	color: #ddd !important;
+    font-weight: normal !important;
+    cursor: default;
+}
+.bs-accessory {
+	height: auto;
+	padding: 7px 10px;
+}
+.bs-accessory.bs-prompt { font-weight: bold; color: #33BCF0 }
+.bs-accessory { color: #ddd }
+.bs-upload {
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+.bs-file {
+    cursor: pointer;
+    height: 100%;
+    position:absolute;
+    top: 0;
+    right: 0;
+    z-index: 99;
+    /*This makes the button huge. If you want a bigger button, increase the font size*/
+    font-size:50px;
+    /*Opacity settings for all browsers*/
+    opacity: 0;
+    -moz-opacity: 0;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
+}
+.bs-upload {
+}
+.bs-webcam {
+}
+.bs-facebook, .bs-save { padding: 0 9px; }
+.bs-facebook img, .bs-save img {
+	width: 24px;
+	padding: 1px;
+}
+.bs-screen {
+	position: relative;
+}
+.bs-instructions-container {
+    width: 100%;
+    height: 200px;
+    background-color: #ccc;
+}
+.bs-instructions {
+    padding: 10px;
+}
+.bs-canvas-container {
+    position: relative;
+}
+.bs-canvas-container .canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.bs-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    z-index: 9;
+    background-color: rgba(255,255,255,0.6);
+}
+.bs-webcam-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.bs-webcam-screen video {
+    width:100%;
+    transform: rotateY(180deg);
+    -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+    -moz-transform:rotateY(180deg); /* Firefox */
+}
