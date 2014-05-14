@@ -1,9 +1,10 @@
 body { font-family: Arial; }
 #beard-simulator {
-    width: 460px;
+    width: 660px;
 }
 .bs-buttons {
-    background-color: #333;
+    /*background-color: #333;*/
+	text-align: center;
 }
 .bs-button {
     height: 32px;
@@ -64,6 +65,8 @@ body { font-family: Arial; }
 .bs-facebook img, .bs-save img {
 	width: 24px;
 	padding: 1px;
+	margin: 0;
+	border: none;
 }
 .bs-screen {
 	position: relative;
@@ -96,6 +99,7 @@ body { font-family: Arial; }
     position: absolute;
     top: 0;
     left: 0;
+    width: 100%;
 }
 .bs-webcam-screen video {
     width:100%;
