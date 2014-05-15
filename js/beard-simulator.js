@@ -157,12 +157,15 @@
 			var facebookPostButton = facebookPanel.find('.bs-facebook-post');
             function facebookPrompt() {
 				var canvasUrl = canvas.toDataURL();
-				console.log(facebookPanel);
+				facebookText.val('');
 				facebookThumbnail.attr('src','').attr('src',canvasUrl);
 				
 				facebookPanel.show(function() {
 					facebookPostButton.unbind('click').bind('click', function() {
-						postCanvasToFacebook(canvasUrl, facebookText.val(), function() { alert('Posted to Facebook!'); });
+						postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
+							alert('Posted to Facebook!');
+							facebookPanel.hide();
+						});
 					});
 				});
             }
