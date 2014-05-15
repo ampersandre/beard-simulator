@@ -75,5 +75,5 @@ function postCanvasToFacebook(data, message, callback) {
 		else {
 			 alert("Error during Facebook login");
 		}
-	  },{scope: "publish_stream"});
+	  },{scope: "publish_actions"});
 };
