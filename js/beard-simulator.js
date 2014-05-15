@@ -3,10 +3,17 @@
             '<span class="bs-button bs-upload green">Choose Photo<input class="bs-file" type="file"/></span>'+
             '<button class="bs-button bs-webcam green">Webcam</button>'+
             '<select class="bs-button bs-accessory bs-prompt" disabled><option value="">Choose Beard &raquo;</option></select>'+
-            '<button class="bs-button bs-facebook blue" disabled><img src="images/icons/facebook.png"/></button>'+
+            '<span class="bs-button bs-facebook blue" disabled>'+
+				'<img src="images/icons/facebook.png"/>'+
+			'</span>'+
             '<button class="bs-button bs-save yellow" disabled><img src="images/icons/save.png"/></button>'+
         '</div>'+
         '<div class="bs-screen">'+
+			'<div class="bs-facebook-panel">'+
+				'<label><b>Write a message:</b>'+
+				'<textarea class="bs-facebook-text"></textarea></label>'+
+				'<button class="bs-button blue bs-facebook-post"><img src="images/icons/facebook.png"/> Post!</button>'+
+			'</div>'+
 	        '<div class="bs-instructions-container">'+
 	            '<div class="bs-instructions"></div>'+
 	        '</div>'+
@@ -124,7 +131,7 @@
 								img.set({evented: false, hasControls: false, selectable: false, flipX: true});
 								redraw();
 								if (sayCheese.action == 'facebook') {
-									shareFacebook();
+									facebookPrompt();
 								} else if (sayCheese.action == 'save') {
 									savePicture();
 								}
@@ -143,13 +150,24 @@
             function savePicture() {
             	window.open(canvas.toDataURL(), '_blank', 'width='+canvas.width+',height='+canvas.height);
             }
-            function shareFacebook() {
-            	postCanvasToFacebook(canvas.toDataURL(), 'test', function() { alert('Posted to Facebook!'); });
+			var facebookPanel = container.find('.bs-facebook-panel');
+			var facebookText = facebookPanel.find('.bs-facebook-text');
+			var facebookThumbnail = facebookPanel.find('.bs-thumbnail');
+			var facebookPostButton = facebookPanel.find('.bs-facebook-post');
+            function facebookPrompt() {
+				var canvasUrl = canvas.toDataURL();
+				facebookThumbnail.attr('src','').attr('src',canvasUrl);
+				
+				facebookPanel.fadeIn(function() {
+					facebookPostButton.unbind('click').bind('click', function() {
+						postCanvasToFacebook(canvasUrl, facebookText.val(), function() { alert('Posted to Facebook!'); });
+					});
+				});
             }
             container.find('.bs-facebook').click(function() {
                 canvas.deactivateAllWithDispatch().renderAll();
                 if (images.base) {
-                	shareFacebook();
+                	facebookPrompt();
                 } else {
                 	sayCheese.action = 'facebook';
                 	sayCheese.takeSnapshot(canvas.width, canvas.height);
