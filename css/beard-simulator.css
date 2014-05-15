@@ -87,11 +87,21 @@ body { font-family: Arial; }
 }
 .bs-loading {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10px;
+    left: 47%;
     text-align: center;
     z-index: 9;
-    background-color: rgba(255,255,255,0.6);
+	padding: 10px;
+    background-color: #FFF;
+	-webkit-box-shadow: 0px 0px 4px 0px #555;
+		  box-shadow: 0px 0px 4px 0px #555;
+}
+.bs-loading img {
+	padding: 0 !important;
+	margin: 0 !important;
+	border: none;
+	-webkit-box-shadow: none;
+		  box-shadow: none;
 }
 .bs-webcam-screen {
     position: absolute;
