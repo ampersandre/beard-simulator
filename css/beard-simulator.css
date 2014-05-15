@@ -42,6 +42,7 @@ body { font-family: Arial; }
     overflow: hidden;
     position: relative;
     cursor: pointer;
+	float: left;
 }
 .bs-file {
     cursor: pointer;
@@ -57,10 +58,8 @@ body { font-family: Arial; }
     -moz-opacity: 0;
     filter:progid:DXImageTransform.Microsoft.Alpha(opacity=0)
 }
-.bs-upload {
-}
-.bs-buttons .bs-webcam { display: none; }
-.bs-facebook, .bs-save { padding: 0 9px; }
+.bs-buttons .bs-webcam { display: none; float: left; }
+.bs-facebook, .bs-save { padding: 0 9px; float: right; }
 .bs-facebook img, .bs-save img {
 	width: 24px;
 	padding: 1px;
