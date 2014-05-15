@@ -147,6 +147,8 @@ body { font-family: Arial; }
 	padding: 1px 7px 1px 1px;
 	margin: 0;
 	border: none;
+	-webkit-box-shadow: none;
+		  box-shadow: none;
 }
 .bs-thumbnail {
 	float: left;
