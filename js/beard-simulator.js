@@ -117,8 +117,6 @@
 					container.find('.bs-file').val('');
 					if (!sayCheese) {
 						sayCheese = new SayCheese('#'+webcamScreenId, {audio:false});
-						if (!sayCheese.video) { alert('No webcam detected'); }
-						
 						sayCheese.on('start', function() {
 							images.base = null;
 							redraw();
