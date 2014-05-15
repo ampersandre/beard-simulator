@@ -2,7 +2,7 @@
     var bsHtml = '<div class="bs-buttons">'+
             '<span class="bs-button bs-upload green">Choose Photo<input class="bs-file" type="file"/></span>'+
             '<button class="bs-button bs-webcam green">Webcam</button>'+
-            '<select class="bs-button bs-accessory bs-prompt" disabled><option value="">Choose Accessory &raquo;</option></select>'+
+            '<select class="bs-button bs-accessory bs-prompt" disabled><option value="">Choose Beard &raquo;</option></select>'+
             '<button class="bs-button bs-facebook blue" disabled><img src="images/icons/facebook.png"/></button>'+
             '<button class="bs-button bs-save yellow" disabled><img src="images/icons/save.png"/></button>'+
         '</div>'+
@@ -102,45 +102,50 @@
                 fr.readAsDataURL(file);
             });
             
-            var sayCheese;
-            if (isAndroid) { container.find('.bs-webcam').remove(); }
-            else {
-	            container.find('.bs-webcam').click(function() {
-	            	container.find('.bs-file').val('');
-	            	if (!sayCheese) {
-	                    sayCheese = new SayCheese('#'+webcamScreenId, {audio:false});
-	                    console.log(sayCheese);
-	                    sayCheese.on('start', function() {
-	                        images.base = null;
-	                        redraw();
-	                        container.find('.bs-webcam-screen').show();
-	                        container.find('.bs-button').removeAttr('disabled');
-	                        console.log(sayCheese);
-	                    });
-	                    
-	                    sayCheese.on('snapshot', function(snapshot) {
-	                        var snapshotUrl = snapshot.toDataURL('image/png');
-	                        fabric.Image.fromURL(snapshotUrl, function(img){
-	                        	images.base = img;
-		                        img.set({evented: false, hasControls: false, selectable: false, flipX: true});
-		                        redraw();
-		                        if (sayCheese.action == 'facebook') {
-		                        	shareFacebook();
-		                        } else if (sayCheese.action == 'save') {
-		                        	savePicture();
-		                        }
-		                        images.base = null;
-		                        redraw();
-	                        });
-	                    });
-	                    sayCheese.start();
-	                } else {
-	                	images.base = null;
-	                    redraw();
-	                    container.find('.bs-webcam-screen').show();
-	                }
-	            });
-	        }
+			navigator.getMedia = ( navigator.getUserMedia || // use the proper vendor prefix
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
+			navigator.getMedia({video: true}, function() {
+				var sayCheese;
+				if (!isAndroid) {
+					container.find('.bs-webcam').click(function() {
+						container.find('.bs-file').val('');
+						if (!sayCheese) {
+							sayCheese = new SayCheese('#'+webcamScreenId, {audio:false});
+							console.log(sayCheese);
+							sayCheese.on('start', function() {
+								images.base = null;
+								redraw();
+								container.find('.bs-webcam-screen').show();
+								container.find('.bs-button').removeAttr('disabled');
+								console.log(sayCheese);
+							});
+							
+							sayCheese.on('snapshot', function(snapshot) {
+								var snapshotUrl = snapshot.toDataURL('image/png');
+								fabric.Image.fromURL(snapshotUrl, function(img){
+									images.base = img;
+									img.set({evented: false, hasControls: false, selectable: false, flipX: true});
+									redraw();
+									if (sayCheese.action == 'facebook') {
+										shareFacebook();
+									} else if (sayCheese.action == 'save') {
+										savePicture();
+									}
+									images.base = null;
+									redraw();
+								});
+							});
+							sayCheese.start();
+						} else {
+							images.base = null;
+							redraw();
+							container.find('.bs-webcam-screen').show();
+						}
+					}).show();
+				}
+			}, function() {  });
             
             function savePicture() {
             	window.open(canvas.toDataURL(), '_blank', 'width='+canvas.width+',height='+canvas.height);

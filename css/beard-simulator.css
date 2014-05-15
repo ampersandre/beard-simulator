@@ -59,8 +59,7 @@ body { font-family: Arial; }
 }
 .bs-upload {
 }
-.bs-webcam {
-}
+.bs-buttons .bs-webcam { display: none; }
 .bs-facebook, .bs-save { padding: 0 9px; }
 .bs-facebook img, .bs-save img {
 	width: 24px;
