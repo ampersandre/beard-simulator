@@ -108,13 +108,13 @@
 					container.find('.bs-file').val('');
 					if (!sayCheese) {
 						sayCheese = new SayCheese('#'+webcamScreenId, {audio:false});
-						console.log(sayCheese);
+						if (!sayCheese.video) { alert('No webcam detected'); }
+						
 						sayCheese.on('start', function() {
 							images.base = null;
 							redraw();
 							container.find('.bs-webcam-screen').show();
 							container.find('.bs-button').removeAttr('disabled');
-							console.log(sayCheese);
 						});
 						
 						sayCheese.on('snapshot', function(snapshot) {
