@@ -8,7 +8,7 @@
         '</div>'+
         '<div class="bs-screen">'+
 	        '<div class="bs-instructions-container">'+
-	            '<div class="bs-instructions">Upload a picture or use your webcam to begin!</div>'+
+	            '<div class="bs-instructions"></div>'+
 	        '</div>'+
 	        '<div class="bs-loading" style="display: none;"><img src="images/ajax.gif"/></div>'+
 	        '<div class="bs-canvas-container" style="display: none;">'+
