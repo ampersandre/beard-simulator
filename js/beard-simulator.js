@@ -102,51 +102,43 @@
                 fr.readAsDataURL(file);
             });
             
-			navigator.getMedia = ( navigator.getUserMedia || // use the proper vendor prefix
-                       navigator.webkitGetUserMedia ||
-                       navigator.mozGetUserMedia ||
-                       navigator.msGetUserMedia);
-			navigator.getMedia({video: true}, function() {
-				var sayCheese;
-				if (!isAndroid) {
-					container.find('.bs-webcam').click(function() {
-						container.find('.bs-file').val('');
-						if (!sayCheese) {
-							sayCheese = new SayCheese('#'+webcamScreenId, {audio:false});
-							console.log(sayCheese);
-							sayCheese.on('start', function() {
-								images.base = null;
-								redraw();
-								container.find('.bs-webcam-screen').show();
-								container.find('.bs-button').removeAttr('disabled');
-								console.log(sayCheese);
-							});
-							
-							sayCheese.on('snapshot', function(snapshot) {
-								var snapshotUrl = snapshot.toDataURL('image/png');
-								fabric.Image.fromURL(snapshotUrl, function(img){
-									images.base = img;
-									img.set({evented: false, hasControls: false, selectable: false, flipX: true});
-									redraw();
-									if (sayCheese.action == 'facebook') {
-										shareFacebook();
-									} else if (sayCheese.action == 'save') {
-										savePicture();
-									}
-									images.base = null;
-									redraw();
-								});
-							});
-							sayCheese.start();
-						} else {
+			if (!isAndroid) {
+				container.find('.bs-webcam').click(function() {
+					container.find('.bs-file').val('');
+					if (!sayCheese) {
+						sayCheese = new SayCheese('#'+webcamScreenId, {audio:false});
+						console.log(sayCheese);
+						sayCheese.on('start', function() {
 							images.base = null;
 							redraw();
 							container.find('.bs-webcam-screen').show();
-						}
-					}).show();
-				}
-			}, function() {  });
-            
+							container.find('.bs-button').removeAttr('disabled');
+							console.log(sayCheese);
+						});
+						
+						sayCheese.on('snapshot', function(snapshot) {
+							var snapshotUrl = snapshot.toDataURL('image/png');
+							fabric.Image.fromURL(snapshotUrl, function(img){
+								images.base = img;
+								img.set({evented: false, hasControls: false, selectable: false, flipX: true});
+								redraw();
+								if (sayCheese.action == 'facebook') {
+									shareFacebook();
+								} else if (sayCheese.action == 'save') {
+									savePicture();
+								}
+								images.base = null;
+								redraw();
+							});
+						});
+						sayCheese.start();
+					} else {
+						images.base = null;
+						redraw();
+						container.find('.bs-webcam-screen').show();
+					}
+				});
+			}
             function savePicture() {
             	window.open(canvas.toDataURL(), '_blank', 'width='+canvas.width+',height='+canvas.height);
             }
