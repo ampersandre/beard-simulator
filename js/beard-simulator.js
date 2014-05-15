@@ -163,7 +163,7 @@
 				facebookPanel.show(function() {
 					facebookPostButton.unbind('click').bind('click', function() {
 						postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
-							alert('Posted to Facebook!');
+							alert('Facebook integration coming soon! This App is awaiting approval from Facebook :)');
 							facebookPanel.hide();
 						});
 					});
