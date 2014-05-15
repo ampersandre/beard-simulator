@@ -47,6 +47,7 @@
             var images = { };
             
             function redraw() {
+				loading.show();
                 container.find('.bs-instructions-container').hide();
                 canvas.clear();
                 
@@ -163,7 +164,7 @@
 				facebookPanel.show(function() {
 					facebookPostButton.unbind('click').bind('click', function() {
 						postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
-							alert('Facebook integration coming soon! This App is awaiting approval from Facebook :)');
+							alert('Posted to Facebook :)');
 							facebookPanel.hide();
 						});
 					});
