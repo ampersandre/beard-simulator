@@ -10,6 +10,7 @@
         '</div>'+
         '<div class="bs-screen">'+
 			'<div class="bs-facebook-panel">'+
+				'<img class="bs-thumbnail" src=""/>'+
 				'<label><b>Write a message:</b>'+
 				'<textarea class="bs-facebook-text"></textarea></label>'+
 				'<button class="bs-button blue bs-facebook-post"><img src="images/icons/facebook.png"/> Post!</button>'+
@@ -156,9 +157,10 @@
 			var facebookPostButton = facebookPanel.find('.bs-facebook-post');
             function facebookPrompt() {
 				var canvasUrl = canvas.toDataURL();
+				console.log(facebookPanel);
 				facebookThumbnail.attr('src','').attr('src',canvasUrl);
 				
-				facebookPanel.fadeIn(function() {
+				facebookPanel.show(function() {
 					facebookPostButton.unbind('click').bind('click', function() {
 						postCanvasToFacebook(canvasUrl, facebookText.val(), function() { alert('Posted to Facebook!'); });
 					});
