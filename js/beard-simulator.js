@@ -103,6 +103,7 @@
             });
             
 			if (!isAndroid) {
+				var sayCheese;
 				container.find('.bs-webcam').click(function() {
 					container.find('.bs-file').val('');
 					if (!sayCheese) {
