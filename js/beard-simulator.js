@@ -188,7 +188,7 @@
 			var facebookThumbnail = facebookPanel.find('.bs-thumbnail');
 			var facebookPostButton = facebookPanel.find('.bs-facebook-post');
             function facebookPrompt() {
-				var canvasUrl = '';
+				var canvasUrl = canvas.toDataURL();
 				facebookText.val('');
 				facebookThumbnail.attr('src','').attr('src',canvasUrl);
 				
