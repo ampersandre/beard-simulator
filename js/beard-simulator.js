@@ -179,8 +179,8 @@
 				var canvasUrl = canvas.toDataURL();
 				saveThumbnail.attr('src','').attr('src',canvasUrl);
 				
-				facebookPanel.hide();
-				savePanel.show();
+				facebookPanel.fadeOut();
+				savePanel.fadeIn();
             }
 			
 			var facebookPanel = container.find('.bs-facebook-panel');
@@ -192,8 +192,8 @@
 				facebookText.val('');
 				facebookThumbnail.attr('src','').attr('src',canvasUrl);
 				
-				savePanel.hide();
-				facebookPanel.show();
+				savePanel.fadeOut();
+				facebookPanel.fadeIn();
 				facebookPostButton.unbind('click').bind('click', function() {
 					postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
 						alert('Posted to Facebook :)');

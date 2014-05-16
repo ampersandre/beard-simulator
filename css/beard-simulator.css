@@ -122,11 +122,12 @@ body { font-family: Arial; }
 	left: 25%;
 	display: none;
 	background-color: #FFF;
-	-webkit-box-shadow: 0px 0px 4px 0px #555;
-		  box-shadow: 0px 0px 4px 0px #555;
+	border-radius: 0;
+	border: 1px solid #333;
+	-webkit-box-shadow: 0px 0px 21px 5px #555;
+	box-shadow: 0 0 21px 5px #FFF;
 	width: 340px;
 	padding: 5px;
-	border-radius: 4px;
 	z-index: 999999;
 }
 .bs-facebook-panel b {
@@ -168,9 +169,7 @@ body { font-family: Arial; }
 }
 .bs-save-panel {
 	padding: 0;
-	border-radius: 0;
-	border: 1px solid #333;
-	box-shadow: 0 0 21px 5px #FFF;
+	width: 350px;
 }
 .bs-save-instructions {
 	padding: 5px;
