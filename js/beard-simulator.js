@@ -172,7 +172,7 @@
 			var savePanel = container.find('.bs-save-panel');
 			var saveThumbnail = savePanel.find('.bs-thumbnail');
 			var saveClose = savePanel.find('.bs-close').click(function() {
-				savePanel.hide();
+				savePanel.fadeOut();
 			});
 			
 			function savePicture() {
