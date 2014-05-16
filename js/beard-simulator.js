@@ -188,11 +188,12 @@
 			var facebookThumbnail = facebookPanel.find('.bs-thumbnail');
 			var facebookPostButton = facebookPanel.find('.bs-facebook-post');
             function facebookPrompt() {
-				var canvasUrl = canvas.toDataURL();
+				var canvasUrl = '';
 				facebookText.val('');
 				facebookThumbnail.attr('src','').attr('src',canvasUrl);
 				
 				savePanel.hide();
+				facebookPanel.show();
 				facebookPostButton.unbind('click').bind('click', function() {
 					postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
 						alert('Posted to Facebook :)');

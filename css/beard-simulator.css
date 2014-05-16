@@ -180,6 +180,9 @@ body { font-family: Arial; }
 	float: none;
 	max-height: none;
 	max-width: none;
+	width: 100%;
+	padding: 0;
+	border: none;
 }
 .bs-save-panel .bs-close {
 	background-color: #933;
