@@ -3,9 +3,9 @@
             '<span class="bs-button bs-upload green">Choose Photo<input class="bs-file" type="file"/></span>'+
             '<button class="bs-button bs-webcam green">Webcam</button>'+
             '<select class="bs-button bs-accessory bs-prompt" disabled><option value="">Choose Beard &raquo;</option></select>'+
-            '<span class="bs-button bs-facebook blue" disabled>'+
+            '<button class="bs-button bs-facebook blue" disabled>'+
 				'<img src="images/icons/facebook.png"/>'+
-			'</span>'+
+			'</button>'+
             '<button class="bs-button bs-save yellow" disabled><img src="images/icons/save.png"/></button>'+
         '</div>'+
         '<div class="bs-screen">'+
