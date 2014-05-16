@@ -196,7 +196,6 @@
 				facebookPanel.fadeIn();
 				facebookPostButton.unbind('click').bind('click', function() {
 					postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
-						alert('Posted to Facebook :)');
 						facebookPanel.hide();
 					});
 				});
