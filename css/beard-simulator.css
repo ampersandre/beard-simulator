@@ -2,6 +2,7 @@ body { font-family: Arial; }
 #beard-simulator {
     width: 660px;
 }
+.bs-mobile { display: none; }
 .bs-buttons {
     /*background-color: #333;*/
 	text-align: center;
@@ -115,7 +116,7 @@ body { font-family: Arial; }
     -webkit-transform:rotateY(180deg); /* Safari and Chrome */
     -moz-transform:rotateY(180deg); /* Firefox */
 }
-.bs-facebook-panel {
+.bs-facebook-panel, .bs-save-panel {
 	position: absolute;
 	top: 20%;
 	left: 25%;
@@ -164,4 +165,31 @@ body { font-family: Arial; }
 	float: left;
 	max-height: 100px;
 	max-width: 140px;
+}
+.bs-save-panel {
+	padding: 0;
+	border-radius: 0;
+	border: 1px solid #333;
+	box-shadow: 0 0 21px 5px #FFF;
+}
+.bs-save-instructions {
+	padding: 5px;
+	text-align: center;
+}
+.bs-save-panel .bs-thumbnail {
+	float: none;
+	max-height: none;
+	max-width: none;
+}
+.bs-save-panel .bs-close {
+	background-color: #933;
+	color: #FFF;
+	text-align: center;
+	font-weight: bold;
+	width: 100%;
+	padding: 5px 0;
+	cursor: pointer;
+}
+.bs-save-panel .bs-close:hover {
+	text-decoration: underline;
 }

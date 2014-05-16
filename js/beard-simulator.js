@@ -15,6 +15,14 @@
 				'<textarea class="bs-facebook-text"></textarea></label>'+
 				'<button class="bs-button blue bs-facebook-post"><img src="images/icons/facebook.png"/> Post!</button>'+
 			'</div>'+
+			'<div class="bs-save-panel">'+
+				'<div class="bs-save-instructions">'+
+					'<span class="bs-desktop">Right-click and Save your beard :)</span>'+
+					'<span class="bs-mobile">Tap and hold to Save your beard :)</span>'+
+				'</div>'+
+				'<img class="bs-thumbnail" src=""/>'+
+				'<div class="bs-close">Close</div>'+
+			'</div>'+
 	        '<div class="bs-instructions-container">'+
 	            '<div class="bs-instructions"></div>'+
 	        '</div>'+
@@ -32,7 +40,14 @@
             onUnsupported: function () {}
         }, options);
         var supported = (function(undefined) {return window.FileReader && $("<input type='file'>").get(0).files !== undefined;})();
-		var isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1;
+		var isMobile = (navigator.userAgent.match(/Android/i)
+						 || navigator.userAgent.match(/webOS/i)
+						 || navigator.userAgent.match(/iPhone/i)
+						 || navigator.userAgent.match(/iPad/i)
+						 || navigator.userAgent.match(/iPod/i)
+						 || navigator.userAgent.match(/BlackBerry/i)
+						 || navigator.userAgent.match(/Windows Phone/i)
+						);
 		
 		var mode;
         return this.each(function () {
@@ -45,7 +60,11 @@
             var canvas = new fabric.Canvas(c).setWidth(settings.width);
             canvas.selection = false;
             var images = { };
-            
+            if (isMobile) {
+				container.find('.bs-desktop').hide();
+				container.find('.bs-mobile').show();
+			}
+			
             function redraw() {
 				loading.show();
                 container.find('.bs-instructions-container').hide();
@@ -77,7 +96,7 @@
 	                    cornerSize: 12,
 	                    transparentCorners: true
 	                });
-	                if (isAndroid) { images.accessory.set({ cornerSize: 24 }); }
+	                if (isMobile) { images.accessory.set({ cornerSize: 24 }); }
 	                redraw();
 	            });
             }
@@ -111,7 +130,9 @@
                 fr.readAsDataURL(file);
             });
             
-			if (!isAndroid) {
+			if (isMobile) {
+				container.find('.bs-webcam').hide();
+			} else {
 				var sayCheese;
 				container.find('.bs-webcam').click(function() {
 					container.find('.bs-file').val('');
@@ -147,9 +168,21 @@
 					}
 				});
 			}
-            function savePicture() {
-            	window.open(canvas.toDataURL(), '_blank', 'width='+canvas.width+',height='+canvas.height);
+            
+			var savePanel = container.find('.bs-save-panel');
+			var saveThumbnail = savePanel.find('.bs-thumbnail');
+			var saveClose = savePanel.find('.bs-close').click(function() {
+				savePanel.hide();
+			});
+			
+			function savePicture() {
+				var canvasUrl = canvas.toDataURL();
+				saveThumbnail.attr('src','').attr('src',canvasUrl);
+				
+				facebookPanel.hide();
+				savePanel.show();
             }
+			
 			var facebookPanel = container.find('.bs-facebook-panel');
 			var facebookText = facebookPanel.find('.bs-facebook-text');
 			var facebookThumbnail = facebookPanel.find('.bs-thumbnail');
@@ -159,12 +192,11 @@
 				facebookText.val('');
 				facebookThumbnail.attr('src','').attr('src',canvasUrl);
 				
-				facebookPanel.show(function() {
-					facebookPostButton.unbind('click').bind('click', function() {
-						postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
-							alert('Posted to Facebook :)');
-							facebookPanel.hide();
-						});
+				savePanel.hide();
+				facebookPostButton.unbind('click').bind('click', function() {
+					postCanvasToFacebook(canvasUrl, facebookText.val(), function() {
+						alert('Posted to Facebook :)');
+						facebookPanel.hide();
 					});
 				});
             }
