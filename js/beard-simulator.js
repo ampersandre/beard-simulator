@@ -10,10 +10,13 @@
         '</div>'+
         '<div class="bs-screen">'+
 			'<div class="bs-facebook-panel">'+
-				'<img class="bs-thumbnail" src=""/>'+
-				'<label><b style="border-bottom: 2px solid #FAA; display: block; padding-bottom: 2px; margin-bottom: 2px; ">Note: This feature is pending<br>approval from Facebook</b><b>Write a message:</b>'+
-				'<textarea class="bs-facebook-text"></textarea></label>'+
-				'<button class="bs-button blue bs-facebook-post"><img src="images/icons/facebook.png"/> Post!</button>'+
+				'<div class="clearfix">'+
+					'<img class="bs-thumbnail" src=""/>'+
+					'<label><b>Write a message:</b>'+
+					'<textarea class="bs-facebook-text"></textarea></label>'+
+					'<button class="bs-button blue bs-facebook-post"><img src="images/icons/facebook.png"/> Post!</button>'+
+				'</div>'+
+				'<div class="bs-close">Close</div>'+
 			'</div>'+
 			'<div class="bs-save-panel">'+
 				'<div class="bs-save-instructions">'+
@@ -187,6 +190,9 @@
 			var facebookText = facebookPanel.find('.bs-facebook-text');
 			var facebookThumbnail = facebookPanel.find('.bs-thumbnail');
 			var facebookPostButton = facebookPanel.find('.bs-facebook-post');
+			var facebookClose = facebookPanel.find('.bs-close').click(function() {
+				facebookPanel.fadeOut();
+			});
             function facebookPrompt() {
 				var canvasUrl = canvas.toDataURL();
 				facebookText.val('');

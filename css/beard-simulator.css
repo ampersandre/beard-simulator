@@ -1,4 +1,24 @@
 body { font-family: Arial; }
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
 #beard-simulator {
     width: 660px;
 }
@@ -150,6 +170,7 @@ body { font-family: Arial; }
 	position: relative;
 	float: right;
 	padding-left: 40px !important;
+	margin-right: 60px !important;
 }
 .bs-facebook-post img {
 	position: absolute;
@@ -183,7 +204,7 @@ body { font-family: Arial; }
 	padding: 0;
 	border: none;
 }
-.bs-save-panel .bs-close {
+.bs-close {
 	background-color: #933;
 	color: #FFF;
 	text-align: center;
@@ -192,6 +213,6 @@ body { font-family: Arial; }
 	padding: 5px 0;
 	cursor: pointer;
 }
-.bs-save-panel .bs-close:hover {
+.bs-close:hover {
 	text-decoration: underline;
 }
