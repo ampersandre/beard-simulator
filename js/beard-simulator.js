@@ -87,7 +87,7 @@
             }
             
             function setAccessory(url) {
-            	if (!url) { images.accessory = null; return; }
+            	if (!url) { images.accessory = null; redraw(); return; }
             	fabric.Image.fromURL(url, function(img){
 	            	images.accessory = img;
 	            	images.accessory.scaleToWidth(settings.width/2);
@@ -99,7 +99,7 @@
 	                    cornerSize: 12,
 	                    transparentCorners: true
 	                });
-	                if (isMobile) { images.accessory.set({ cornerSize: 24 }); }
+	                if (isMobile) { images.accessory.set({ cornerSize: 32 }); }
 	                redraw();
 	            });
             }

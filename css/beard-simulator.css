@@ -26,6 +26,7 @@ html[xmlns] .clearfix {
 .bs-buttons {
     /*background-color: #333;*/
 	text-align: center;
+	height: 42px;
 }
 .bs-button {
     height: 32px;
