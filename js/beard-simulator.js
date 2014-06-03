@@ -64,8 +64,8 @@
             canvas.selection = false;
             var images = { };
             if (isMobile) {
-				container.find('.bs-desktop').hide();
-				container.find('.bs-mobile').show();
+				$('.bs-desktop').hide();
+				$('.bs-mobile').show();
 			}
 			
             function redraw() {
