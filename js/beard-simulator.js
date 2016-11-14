@@ -39,6 +39,7 @@
 
         // some code to add 3d model
 nolan
+other thing
 
     $.fn.beardSimulator = function (options) {
 
