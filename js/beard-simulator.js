@@ -36,12 +36,12 @@
 	        '</div>'+
         '</div>';
 
+
+        // some code to add 3d model
+nolan
+
     $.fn.beardSimulator = function (options) {
-        var settings = $.extend({
-            width: 460,
-            accessories: [],
-            onUnsupported: function () {}
-        }, options);
+
         var supported = (function(undefined) {return window.FileReader && $("<input type='file'>").get(0).files !== undefined;})();
 		var isMobile = (navigator.userAgent.match(/Android/i)
 						 || navigator.userAgent.match(/webOS/i)
@@ -51,7 +51,7 @@
 						 || navigator.userAgent.match(/BlackBerry/i)
 						 || navigator.userAgent.match(/Windows Phone/i)
 						);
-		
+
 		var mode;
         return this.each(function () {
             if (!supported) { settings.onUnsupported(); return; }
@@ -67,25 +67,25 @@
 				$('.bs-desktop').hide();
 				$('.bs-mobile').show();
 			}
-			
+
             function redraw() {
 				loading.show();
                 container.find('.bs-instructions-container').hide();
                 canvas.clear();
-                
+
                 if(images.base) {
                     canvas.setHeight(images.base.height * images.base.scaleY);
                     canvas.add(images.base);
                 } else { canvas.setHeight(settings.width * 0.75); }
-                
+
                 if (images.accessory) { canvas.add(images.accessory); }
-                
+
                 canvas.renderAll()
                 canvas.calcOffset();
                 container.find('.bs-canvas-container').show();
                 loading.hide();
             }
-            
+
             function setAccessory(url) {
             	if (!url) { images.accessory = null; redraw(); return; }
             	fabric.Image.fromURL(url, function(img){
@@ -103,7 +103,7 @@
 	                redraw();
 	            });
             }
-            
+
             var accessorySelect = container.find('.bs-accessory');
             for (var i = 0; i < settings.accessories.length; i++) {
             	accessorySelect.append('<option value="'+settings.accessories[i].url+'">'+settings.accessories[i].text+'</option>');
@@ -114,11 +114,11 @@
             }).click(function() {
             	accessorySelect.removeClass('bs-prompt');
             });
-            
+
             container.find('.bs-file').change(function(fileEvent) {
                 var file = fileEvent.target.files[0], imageType = /image.*/;
                 if (!file.type.match(imageType)) { return; }
-                
+
                 container.find('.bs-webcam-screen').hide();
                 loading.show();
                 var fr = new FileReader();
@@ -132,7 +132,7 @@
                 };
                 fr.readAsDataURL(file);
             });
-            
+
 			if (isMobile) {
 				container.find('.bs-webcam').hide();
 			} else {
@@ -147,7 +147,7 @@
 							container.find('.bs-webcam-screen').show();
 							container.find('.bs-button').removeAttr('disabled');
 						});
-						
+
 						sayCheese.on('snapshot', function(snapshot) {
 							var snapshotUrl = snapshot.toDataURL('image/png');
 							fabric.Image.fromURL(snapshotUrl, function(img){
@@ -171,21 +171,21 @@
 					}
 				});
 			}
-            
+
 			var savePanel = container.find('.bs-save-panel');
 			var saveThumbnail = savePanel.find('.bs-thumbnail');
 			var saveClose = savePanel.find('.bs-close').click(function() {
 				savePanel.fadeOut();
 			});
-			
+
 			function savePicture() {
 				var canvasUrl = canvas.toDataURL();
 				saveThumbnail.attr('src','').attr('src',canvasUrl);
-				
+
 				facebookPanel.fadeOut();
 				savePanel.fadeIn();
             }
-			
+
 			var facebookPanel = container.find('.bs-facebook-panel');
 			var facebookText = facebookPanel.find('.bs-facebook-text');
 			var facebookThumbnail = facebookPanel.find('.bs-thumbnail');
@@ -197,7 +197,7 @@
 				var canvasUrl = canvas.toDataURL();
 				facebookText.val('');
 				facebookThumbnail.attr('src','').attr('src',canvasUrl);
-				
+
 				savePanel.fadeOut();
 				facebookPanel.fadeIn();
 				facebookPostButton.unbind('click').bind('click', function() {
